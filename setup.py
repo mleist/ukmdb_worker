@@ -29,7 +29,7 @@ test_requirements = [
 
 setup(
     name='ukmdb_worker',
-    version='0.0.1',
+    version='0.0.2',
     description="UKMDB Worker processes.",
     long_description=readme + '\n\n' + history,
     author="Markus Leist",
