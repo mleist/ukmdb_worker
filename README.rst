@@ -12,6 +12,14 @@ UKMDB Worker
         :target: https://readthedocs.org/projects/ukmdb_worker/?badge=latest
         :alt: Documentation Status
 
+.. image:: https://img.shields.io/pypi/l/ukmdb_worker.svg
+
+.. image:: https://img.shields.io/pypi/pyversions/ukmdb_worker.svg
+
+.. image:: https://img.shields.io/pypi/status/ukmdb_worker.svg
+
+.. image:: https://img.shields.io/pypi/dm/ukmdb_worker.svg
+
 
 UKMDB Worker processes.
 
