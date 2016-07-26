@@ -15,12 +15,13 @@ Options:
 
 from __future__ import absolute_import
 import logging
+from pprint import pformat
 from celery import Celery
 from docopt import docopt
-from ukmdb_worker.base import set_debug_level
+from ukmdb_settings import settings
 from ukmdb_worker import __version__
 from ukmdb_worker import queues
-from ukmdb_settings import settings
+from ukmdb_worker.base import set_debug_level
 
 
 ukmdb_log = logging.getLogger("ukmdb")
@@ -56,6 +57,42 @@ def ukmdb_info(msg):
           )
 def ukmdb_error(msg):
     print("ukmdb_error: '%s'" % str(msg))
+
+
+@app.task(serializer='json',
+          name='ukmdb.add_object',
+          queue='ukmdb_monitoring01',
+          exchange='ukmdb_all_in',
+          routing_key='#',
+          bind=True
+          )
+def add_object(self, msg):
+    ukmdb_log.info("-------> self.request: '%s'", pformat(self.request))
+    ukmdb_log.info("worker # add_object: '%s'", str(msg))
+
+
+@app.task(serializer='json',
+          name='ukmdb.edit_object',
+          queue='ukmdb_monitoring01',
+          exchange='ukmdb_all_in',
+          routing_key='#',
+          bind=True
+          )
+def edit_object(self, msg):
+    ukmdb_log.info("-------> self.request: '%s'", pformat(self.request))
+    ukmdb_log.info("worker # edit_object: '%s'", str(msg))
+
+
+@app.task(serializer='json',
+          name='ukmdb.del_object',
+          queue='ukmdb_monitoring01',
+          exchange='ukmdb_all_in',
+          routing_key='#',
+          bind=True
+          )
+def del_object(self, msg):
+    ukmdb_log.info("-------> self.request: '%s'", pformat(self.request))
+    ukmdb_log.info("worker # worker:::del_object: '%s'", str(msg))
 
 
 def main():
